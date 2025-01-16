@@ -1,0 +1,129 @@
+<!DOCTYPE html><html><head>
+
+<script type="text/javascript" src="js/main.js" charset="UTF-8"></script><script>
+window.onload = function () {
+
+	var vNum = 0;
+	var aNum = 0;
+
+
+
+
+
+  var myAudio = document.getElementById("myAudio");
+  var aPbr = document.getElementById("aPbr");
+  var aCurrentPbr = document.getElementById("aCurrentPbr");
+  var aCurrentDpbr = document.getElementById("aCurrentDpbr");
+  var aChangeBtn = document.getElementById("aChangeBtn");
+ 
+  aPbr.addEventListener('input',function(){
+    aCurrentPbr.innerHTML = aPbr.value;
+    myAudio.playbackRate = aPbr.value;
+  },false);
+
+  aDpbr.addEventListener('input',function(){
+    aCurrentDpbr.innerHTML = aDpbr.value;
+    myAudio.defaultPlaybackRate = aDpbr.value;
+  },false);
+
+	myAudio.addEventListener('ratechange', function(){
+  	aCurrentRc.innerHTML = parseInt(aCurrentRc.innerHTML) + 1;
+  },false);
+
+  aChangeBtn.onclick = function() {
+
+  	var f = "";
+
+  	if (aNum == 0) {
+  		f = "";
+  		aTrack.innerHTML = "";
+  		aNum = 1;
+  	} else {
+  		f = "";
+  		aTrack.innerHTML = "Hidden";
+  		aNum = 0;
+  	}
+
+  	if (myAudio.canPlayType('audio/mpeg')) {
+		   myAudio.setAttribute('src','../videojs/video.js'+f+'.mp3');
+		} else if (myAudio.canPlayType('audio/ogg')) {
+		   myAudio.setAttribute('src','../videojs/video.js'+f+'.ogg');
+		}
+
+		aCurrentPbr.innerHTML = myAudio.playbackRate;
+		aPbr.value = myAudio.playbackRate;
+
+  	return false;
+  };
+
+
+};
+</script>
+<style>
+	body {
+	font-family: 'Arial', sans-serif;
+	color: #333;
+	background-color: #81a7cc;
+	}
+
+	.mediaHldr {
+		width:640px; 
+		margin: 0 auto; 
+		margin-bottom:14em;
+	}
+
+	h1, h2, footer {
+		text-align: center;
+	}
+
+	footer {
+		font-size: 0.8em;
+	}
+
+	input {
+		width: 100%;
+	}
+
+	p {
+		padding-bottom:2em;
+	}
+
+	audio {
+		width:640px;
+		height:25px;
+	}
+body,td,th {
+	font-family: Arial, sans-serif;
+}
+.slider {
+	font-family: "Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, sans-serif;
+}
+</style>
+
+<meta charset="utf-8">
+</head>
+<body>
+
+<div class="mediaHldr">
+
+	<audio id="myAudio" class="video-js vjs-default-skin" controls="" preload="true" controlslist="nodownload" width="640" height="25">
+	  <source src="media/audio.mp3" type="audio/mp3">
+	  <source src=".ogg.html" type="audio/ogg">
+	</audio>
+	<form>
+
+	<input id="aPbr" type="range" value="1.0" min=".65" max="1.25" step=".05">
+	65       70        75        80        85       90        95       100      105      110      115      120      125<br> <center>
+	<u>Click on  Bar to Choose Listening Speed :        <strong>Speed = <span id="aCurrentPbr">1.0</span>
+
+
+	</strong>
+	
+	</u>
+		</center>
+	</form>
+</div>
+
+
+
+</body></html>
